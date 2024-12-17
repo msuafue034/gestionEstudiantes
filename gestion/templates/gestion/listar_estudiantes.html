@@ -1,0 +1,19 @@
+{% extends "gestion/base.html" %}
+
+{% block titulo %}
+<h1>Lista de Estudiantes</h1>
+{% endblock %}
+
+{% block content %}
+<ul>
+    {% for estudiante in estudiantes %}
+        <li>
+            {{ estudiante.nombre }} ({{ estudiante.email }}) 
+            <a href="{% url 'editar_estudiante' estudiante.id %}">EDITAR</a> | 
+            <a href="{% url 'eliminar_estudiante' estudiante.id %}">ELIMINAR</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'crear_estudiante' %}">Agregar nuevo estudiante</a>
+<a href="{% url 'index' %}">Volver al inicio</a>
+{% endblock %}

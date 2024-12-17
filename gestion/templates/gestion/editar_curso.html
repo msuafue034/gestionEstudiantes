@@ -1,0 +1,16 @@
+{% extends "gestion/base.html" %}
+
+{% block titulo %}
+<h1>Editar Curso</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }} <!-- Hace un formulario añadiendo un p (texto base) por cada campo de forms-->
+    <button type="submit">GUARDAR</button>
+</form>
+<a href="{% url 'crear_curso' %}">Crear nuevo curso</a>
+<a href="{% url 'listar_estudiantes' %}">Volver a la lista</a>
+<a href="{% url 'index' %}">Volver al inicio</a>
+{% endblock %}

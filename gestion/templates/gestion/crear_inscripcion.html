@@ -1,0 +1,14 @@
+{% extends "gestion/base.html" %}
+
+{% block titulo %}
+<h1>Crear Inscripción</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">ACEPTAR</button>
+</form>
+<a href="{% url 'listar_inscripciones' %}">Volver a la lista</a>
+{% endblock %}

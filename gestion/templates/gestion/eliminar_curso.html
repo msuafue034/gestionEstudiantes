@@ -1,0 +1,13 @@
+{% extends "gestion/base.html" %}
+
+{% block titulo %}
+<h1>Eliminar Curso</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <p>¿stás seguro de que quieres elimiar el curso <b>{{ curso.nombre }}<b> con código <b>{{ curso.codigo }}<b>?</p>
+    <button type="submit">ELIMINAR</button>
+</form>
+{% endblock %}

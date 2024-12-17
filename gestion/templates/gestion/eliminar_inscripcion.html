@@ -1,0 +1,13 @@
+{% extends "gestion/base.html" %}
+
+{% block titulo %}
+<h1>Eliminar Inscripción</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <p>¿stás seguro de que quieres elimiar la inscripción realizada el <b>{{ inscripcion.fecha_inscripcion }}<b>?</p>
+    <button type="submit">ELIMINAR</button>
+</form>
+{% endblock %}

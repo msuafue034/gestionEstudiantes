@@ -1,0 +1,26 @@
+* {
+    background-color: #6D454C;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    color: #CCDAD1;
+}
+
+p {
+    color: #CCDAD1;
+}
+
+a {
+    color: #FDFEFF;
+    margin-right: 3%;
+    margin-left:2%;
+}
+
+a:hover {
+    color:bisque;
+}
+
+input {
+    color:#CCDAD1;
+}

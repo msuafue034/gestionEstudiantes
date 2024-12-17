@@ -1,0 +1,13 @@
+{% extends "gestion/base.html" %}
+
+{% block titulo %}
+<h1>Gestión de Cursos y Estudiantes</h1>
+{% endblock %}
+
+{% block content %}
+<ul>
+    <li><a href="{% url 'listar_cursos' %}">Gestión de Cursos</a></li>
+    <li><a href="{% url 'listar_estudiantes' %}">Gestión de Estudiantes</a></li>
+    <li><a href="{% url 'listar_inscripciones' %}">Gestión de Inscripciones</a></li>
+</ul>
+{% endblock %}

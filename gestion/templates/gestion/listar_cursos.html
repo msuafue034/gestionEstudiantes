@@ -1,0 +1,16 @@
+{% extends "gestion/base.html" %}
+
+{% block titulo %}
+<h1>Lista de Cursos</h1>
+{% endblock %}
+
+{% block content %}
+{% for curso in cursos %}
+    <p>{{ curso.nombre }} - {{ curso.codigo }} 
+        <a href="{% url 'editar_curso' curso.id %}">EDITAR</a>
+        <a href="{% url 'eliminar_curso' curso.id %}">ELIMINAR</a>
+    </p>
+{% endfor %}
+<a href="{% url 'crear_curso' %}">Crear nuevo curso</a>
+<a href="{% url 'index' %}">Volver al inicio</a>
+{% endblock %}
