@@ -21,6 +21,7 @@ class Curso(models.Model):
             return("La fecha de inicio debe ser anterior a la fecha de finalización.")
     
     
+    
 class Estudiante(models.Model):
     nombre = models.CharField(max_length = 100, verbose_name = "Nombre")
     email = models.EmailField(unique = True, verbose_name = "Email")
@@ -37,6 +38,7 @@ class Estudiante(models.Model):
     def clean(self):
         if self.fecha_inicio > date.today():
             return("La fecha de nacimiento no debe ser posterior al día actual.")
+
     
     
 class Inscripcion(models.Model):
@@ -49,5 +51,5 @@ class Inscripcion(models.Model):
         verbose_name_plural = "Inscripciones"
         
     def clean(self):
-        if self.fecha_inicio > date.today():
-            return("La fecha de nacimiento no debe ser posterior al día actual.")
+        if self.fecha_inscripcion > date.today():
+            return("La fecha de inscripción no puede ser posterior al día actual.")
