@@ -8,6 +8,8 @@ class CursoForm(forms.ModelForm):
     class Meta:
         model = Curso
         fields = ['nombre', 'codigo', 'fecha_inicio', 'fecha_fin']
+        widgets = {'fecha_inicio':forms.DateInput(format='%Y-%m-%d', attrs={'type':'date'}), 
+                   'fecha_fin':forms.DateInput(format='Y%-m%-d%', attrs={'type':'daqte'})}
 
     def clean(self):
         cleaned_data = super().clean()
@@ -53,14 +55,3 @@ class InscripcionForm(forms.ModelForm):
         curso = cleaned_data.get('curso')
         estudiante = cleaned_data.get('estudiante')
 
-        # Validar que la fecha de inscripción no sea futura
-        if fecha_inscripcion and fecha_inscripcion > date.today():
-            raise ValidationError("La fecha de inscripción no puede ser posterior al día actual.")
-
-        # Validar que el curso no haya finalizado
-        if curso and fecha_inscripcion and fecha_inscripcion > curso.fecha_fin:
-            raise ValidationError("No se puede inscribir a un curso que ya ha finalizado.")
-
-        # Validar que el estudiante no esté ya inscrito en el curso
-        if curso and estudiante and Inscripcion.objects.filter(estudiante=estudiante, curso=curso).exists():
-            raise ValidationError("El estudiante ya está inscrito en este curso.")

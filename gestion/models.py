@@ -41,6 +41,8 @@ class Estudiante(models.Model):
             raise ValidationError("El estudiante debe tener al menos 18 años de edad.")
         # timedelta calcula diferencias entre dos fechas (como date, pero con intervalos en vez de fechas específicas)
         # aquí comprueba si 18*365 (18 años) es mayor a la fecha actual y si no, devuelve error
+        # edad = (date.today() - self.fecha_nacimiento).days // 365
+        # if edad < 18: raise ValidationError
 
 class Inscripcion(models.Model):
     estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE, related_name="inscripcionEstudiante")
@@ -59,5 +61,8 @@ class Inscripcion(models.Model):
             raise ValidationError("La fecha de inscripción no puede ser posterior al día actual.")
         if self.fecha_inscripcion > self.curso.fecha_fin:
             raise ValidationError("No se puede inscribir a un curso que ya ha finalizado.")
-        if Inscripcion.objects.filter(estudiante=self.estudiante, curso=self.curso).exists():
+        if Inscripcion.objects.filter(estudiante=self.estudiante, curso=self.curso).exclude(id=self.id).exists():
             raise ValidationError("El estudiante ya está inscrito en este curso.")
+        
+        # if Inscripcion.objects.filter(estudiante=self.estudiante, curso=self.curso).exclude(id=self.id).exist():
+        # con exclude, si hubiese que editar la inscripción no daría error porque deja modificar (excluye) el registro con el id en el que estamos trabajando
