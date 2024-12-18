@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Curso, Estudiante, Inscripcion
 from .forms import CursoForm, EstudianteForm, InscripcionForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 ############## BASADO EN CLASES - Miércoles 17 ##############
 
@@ -16,17 +17,21 @@ class CrearCurso(CreateView):
     form_class = CursoForm
     template_name = 'gestion/crear_curso.html'
     context_object_name = 'form'
+    success_url = reverse_lazy('listar_cursos')
     
 class EditarCurso(UpdateView):
     model = Curso
     form_class = CursoForm
     template_name = 'gestion/editar_curso.html'
     context_object_name = 'form'
+    pk_url_kwarg='id'
+    success_url = reverse_lazy('listar_cursos')
     
 class EliminarCurso(DeleteView):
     model = Curso
     form_class = CursoForm
     template_name = 'gestion/eliminar_curso.html'
+    pk_url_kwarg='id'
     context_object_name = 'curso'
     
 ############## PRINCIPAL ##############
