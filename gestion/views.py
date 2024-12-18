@@ -1,8 +1,34 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Curso, Estudiante, Inscripcion
 from .forms import CursoForm, EstudianteForm, InscripcionForm
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
+############## BASADO EN CLASES - Miércoles 17 ##############
 
+class ListarCursos(ListView):
+    model = Curso
+    form_class = CursoForm
+    template_name = 'gestion/listar_cursos.html'
+    context_object_name = 'cursos'
+    
+class CrearCurso(CreateView):
+    model = Curso
+    form_class = CursoForm
+    template_name = 'gestion/crear_curso.html'
+    context_object_name = 'form'
+    
+class EditarCurso(UpdateView):
+    model = Curso
+    form_class = CursoForm
+    template_name = 'gestion/editar_curso.html'
+    context_object_name = 'form'
+    
+class EliminarCurso(DeleteView):
+    model = Curso
+    form_class = CursoForm
+    template_name = 'gestion/eliminar_curso.html'
+    context_object_name = 'curso'
+    
 ############## PRINCIPAL ##############
 
 def index(request):
