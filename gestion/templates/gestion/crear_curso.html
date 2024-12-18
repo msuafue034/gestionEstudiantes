@@ -7,7 +7,7 @@
 {% block content %}
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_p }} <!--Si se añade en Meta de la clase Curso la clase de bootstrap se puede formatear tablas-->
     <button type="submit">ACEPTAR</button>
 </form>
 <a href="{% url 'listar_cursos' %}">Volver a la lista</a>
