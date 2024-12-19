@@ -7,12 +7,12 @@
 {% block content %}
 <ul>
     {% for inscripcion in inscripciones %}
-        <li>
-            Estudiante: {{ inscripcion.estudiante.nombre }}
-            Curso: {{ inscripcion.curso.nombre }} 
-            (Fecha de inscripción: {{ inscripcion.fecha_inscripcion }})
-            <a href="{% url 'eliminar_inscripcion' inscripcion.id %}">ELIMINAR</a>
-        </li>
+        <li>Estudiante: {{ inscripcion.estudiante.nombre }} </li>
+        <li>Curso: {{ inscripcion.curso.nombre }} </li>
+        <li>Fecha de inscripción: {{ inscripcion.fecha_inscripcion }}</li>
+        <br>
+        <a href="{% url 'eliminar_inscripcion' inscripcion.id %}">ELIMINAR</a>
+
     {% endfor %}
 </ul>
 <a href="{% url 'crear_inscripcion' %}">Crear nueva inscripción</a>
