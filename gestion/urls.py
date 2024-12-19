@@ -18,7 +18,10 @@ urlpatterns = [
     path('estudiantes/editar/<int:id>/', views.editar_estudiante, name='editar_estudiante'),
     path('estudiantes/eliminar/<int:id>/', views.eliminar_estudiante, name='eliminar_estudiante'),
     
-    path('inscripciones/', views.listar_inscripciones, name='listar_inscripciones'),
-    path('inscripciones/crear/', views.crear_inscripcion, name='crear_inscripcion'),
-    path('inscripciones/eliminar/<int:id>/', views.eliminar_inscripcion, name='eliminar_inscripcion'),
+    #path('inscripciones/', views.listar_inscripciones, name='listar_inscripciones'),
+    path('inscripciones/', ListarInscripciones.as_view(), name='listar_inscripciones'),
+    #path('inscripciones/crear/', views.crear_inscripcion, name='crear_inscripcion'),
+    path('inscripciones/crear/', CrearInscripcion.as_view(), name='crear_inscripcion'),
+    #path('inscripciones/eliminar/<int:id>/', views.eliminar_inscripcion, name='eliminar_inscripcion'),
+    path('inscripciones/eliminar/<int:id>/', EliminarInscripcion.as_view(), name='eliminar_inscripcion'),
 ]

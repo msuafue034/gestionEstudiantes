@@ -4,35 +4,6 @@ from .forms import CursoForm, EstudianteForm, InscripcionForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-############## BASADO EN CLASES - Miércoles 17 ##############
-
-class ListarCursos(ListView):
-    model = Curso
-    form_class = CursoForm
-    template_name = 'gestion/listar_cursos.html'
-    context_object_name = 'cursos'
-    
-class CrearCurso(CreateView):
-    model = Curso
-    form_class = CursoForm
-    template_name = 'gestion/crear_curso.html'
-    context_object_name = 'form'
-    success_url = reverse_lazy('listar_cursos')
-    
-class EditarCurso(UpdateView):
-    model = Curso
-    form_class = CursoForm
-    template_name = 'gestion/editar_curso.html'
-    context_object_name = 'form'
-    pk_url_kwarg='id'
-    success_url = reverse_lazy('listar_cursos')
-    
-class EliminarCurso(DeleteView):
-    model = Curso
-    form_class = CursoForm
-    template_name = 'gestion/eliminar_curso.html'
-    pk_url_kwarg='id'
-    context_object_name = 'curso'
     
 ############## PRINCIPAL ##############
 
@@ -73,6 +44,37 @@ def eliminar_curso(request, id):
         return redirect('listar_cursos')
     return render(request, 'gestion/eliminar_curso.html', {"curso": curso})
 
+
+############## BASADO EN CLASES - Miércoles 17 ##############
+
+class ListarCursos(ListView):
+    model = Curso
+    form_class = CursoForm
+    template_name = 'gestion/listar_cursos.html'
+    context_object_name = 'cursos'
+    
+class CrearCurso(CreateView):
+    model = Curso
+    form_class = CursoForm
+    template_name = 'gestion/crear_curso.html'
+    context_object_name = 'form'
+    success_url = reverse_lazy('listar_cursos')
+    
+class EditarCurso(UpdateView):
+    model = Curso
+    form_class = CursoForm
+    template_name = 'gestion/editar_curso.html'
+    context_object_name = 'form'
+    pk_url_kwarg='id'
+    success_url = reverse_lazy('listar_cursos')
+    
+class EliminarCurso(DeleteView):
+    model = Curso
+    form_class = CursoForm
+    template_name = 'gestion/eliminar_curso.html'
+    pk_url_kwarg='id'
+    context_object_name = 'curso'
+    
 
 ############## ESTUDIANTE ##############
 
@@ -131,3 +133,29 @@ def eliminar_inscripcion(request, id):
         inscripcion.delete()
         return redirect('listar_inscripciones')
     return render(request, 'gestion/eliminar_inscripcion.html', {"inscripcion": inscripcion})
+
+
+############## INSCRIPCION - Jueves 19 ##############
+
+
+class ListarInscripciones(ListView):
+    model = Inscripcion
+    form_class = InscripcionForm
+    template_name = 'gestion/listar_inscripciones.html'
+    context_object_name = 'inscripciones'
+    
+class CrearInscripcion(CreateView):
+    model = Inscripcion
+    form_class = InscripcionForm
+    template_name = 'gestion/crear_inscripcion.html'
+    context_object_name = 'inscripciones'
+    success_url = reverse_lazy('listar_inscripciones')
+    
+class EliminarInscripcion(DeleteView):
+    model = Inscripcion
+    form_class = InscripcionForm
+    template_name = 'gestion/eliminar_inscripcion.html'
+    pk_url_kwarg='id'
+    context_object_name = 'inscripciones'
+    
+#context['prestamos_prestados'] = Prestamo.objects.filter(usuario=self.request.user, )
