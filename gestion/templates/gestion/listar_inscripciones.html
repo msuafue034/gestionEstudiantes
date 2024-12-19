@@ -5,6 +5,16 @@
 {% endblock %}
 
 {% block content %}
+<form method="get">
+    <label for="estudiante">Filtrar por estudiante:</label>
+    <input type="text" name="estudiante" value="{{ request.GET.estudiante }}">
+    
+    <label for="curso">Filtrar por curso:</label>
+    <input type="text" name="curso" value="{{ request.GET.curso }}">
+    
+    <button type="submit">Filtrar</button>
+</form>
+
 <ul>
     {% for inscripcion in inscripciones %}
         <li>Estudiante: {{ inscripcion.estudiante.nombre }} </li>
@@ -12,9 +22,11 @@
         <li>Fecha de inscripción: {{ inscripcion.fecha_inscripcion }}</li>
         <br>
         <a href="{% url 'eliminar_inscripcion' inscripcion.id %}">ELIMINAR</a>
-
+    {% empty %}
+        <p>No existen inscripciones con los criterios marcados.</p>
     {% endfor %}
 </ul>
+
 <a href="{% url 'crear_inscripcion' %}">Crear nueva inscripción</a>
 <a href="{% url 'index' %}">Volver al inicio</a>
 {% endblock %}

@@ -55,3 +55,10 @@ class InscripcionForm(forms.ModelForm):
         curso = cleaned_data.get('curso')
         estudiante = cleaned_data.get('estudiante')
 
+
+class FiltrarInscripcionForm(forms.ModelForm):
+    class Meta:
+        model: Inscripcion
+        fields: ['estudiante', 'curso']
+        
+    

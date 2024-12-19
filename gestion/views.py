@@ -137,12 +137,29 @@ def eliminar_inscripcion(request, id):
 
 ############## INSCRIPCION - Jueves 19 ##############
 
-
 class ListarInscripciones(ListView):
     model = Inscripcion
     form_class = InscripcionForm
     template_name = 'gestion/listar_inscripciones.html'
     context_object_name = 'inscripciones'
+    
+    def get_datos(self):
+        estudiante_nombre = self.request.GET.get('estudiante', '').strip()
+        curso_nombre = self.request.GET.get('curso', '').strip()
+        
+        inscripciones = Inscripcion.objects.all()
+
+        if estudiante_nombre:
+            inscripciones = inscripciones.filter(estudiante__nombre__icontains=estudiante_nombre)
+        if curso_nombre:
+            inscripciones = inscripciones.filter(curso__nombre__icontains=curso_nombre)
+
+        return inscripciones
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['inscripciones'] = self.get_datos()
+        return context
     
 class CrearInscripcion(CreateView):
     model = Inscripcion
@@ -158,4 +175,3 @@ class EliminarInscripcion(DeleteView):
     pk_url_kwarg='id'
     context_object_name = 'inscripciones'
     
-#context['prestamos_prestados'] = Prestamo.objects.filter(usuario=self.request.user, )
