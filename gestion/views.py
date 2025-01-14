@@ -3,6 +3,8 @@ from .models import Curso, Estudiante, Inscripcion
 from .forms import CursoForm, EstudianteForm, InscripcionForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin   # Para necesitar estar logeado para acceder 
+#from django.contrib.auth.decorators import login_required --> se añade @login_required antes de la clase para poder acceder solo quien esté logeado
 
     
 ############## PRINCIPAL ##############
@@ -47,20 +49,20 @@ def eliminar_curso(request, id):
 
 ############## BASADO EN CLASES - Miércoles 17 ##############
 
-class ListarCursos(ListView):
+class ListarCursos(LoginRequiredMixin, ListView):
     model = Curso
     form_class = CursoForm
     template_name = 'gestion/listar_cursos.html'
     context_object_name = 'cursos'
     
-class CrearCurso(CreateView):
+class CrearCurso(LoginRequiredMixin, CreateView):
     model = Curso
     form_class = CursoForm
     template_name = 'gestion/crear_curso.html'
     context_object_name = 'form'
     success_url = reverse_lazy('listar_cursos')
     
-class EditarCurso(UpdateView):
+class EditarCurso(LoginRequiredMixin, UpdateView):
     model = Curso
     form_class = CursoForm
     template_name = 'gestion/editar_curso.html'
@@ -68,7 +70,7 @@ class EditarCurso(UpdateView):
     pk_url_kwarg='id'
     success_url = reverse_lazy('listar_cursos')
     
-class EliminarCurso(DeleteView):
+class EliminarCurso(LoginRequiredMixin, DeleteView):
     model = Curso
     form_class = CursoForm
     template_name = 'gestion/eliminar_curso.html'
