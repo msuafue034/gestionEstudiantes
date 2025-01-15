@@ -125,6 +125,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = reverse_lazy('listar_cursos')   
-LOGOUT_TEDIRECT_URL = reverse_lazy('listar_cursos')   
+LOGIN_REDIRECT_URL = reverse_lazy('index')   
+LOGOUT_REDIRECT_URL = reverse_lazy('index')
 # también puede usarse (en login y logout) solo = '/' para redirigir al directorio raíz

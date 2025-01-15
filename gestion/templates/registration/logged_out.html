@@ -1,0 +1,11 @@
+{% extends "gestion/base.html" %}
+
+{% block titulo %}
+<h1>Logout</h1>
+{% endblock %}
+
+{% block content %}
+    <h1>Sesión cerrada</h1>
+    <p>Has cerrado sesión correctamente. <a href="{% url 'login' %}">Iniciar sesión de nuevo</a>.</p>
+<a href="{% url 'index' %}">Volver al inicio</a>
+{% endblock %}
