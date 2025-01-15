@@ -5,7 +5,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin   # Para necesitar estar logeado para acceder 
 #from django.contrib.auth.decorators import login_required --> se añade @login_required antes de la clase para poder acceder solo quien esté logeado
-
+# Mixin --> Para vistas basadas en clases. No verifica el tipo de user, solo si está logeado. Por defecto pide usuario y contraseña. Existen más tipos de Mixin.
+#Decorators --> Para 
     
 ############## PRINCIPAL ##############
 

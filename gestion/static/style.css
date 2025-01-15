@@ -24,3 +24,8 @@ a:hover {
 input {
     color:#CCDAD1;
 }
+
+button {
+    background-color: bisque;
+    color: #442c30;
+}

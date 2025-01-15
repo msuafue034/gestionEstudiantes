@@ -5,6 +5,16 @@
 {% endblock %}
 
 {% block content %}
-
+    <h1>Iniciar sesión</h1>
+        {% if form.errors %}
+            <p>Por favor, corrige los siguientes errores:</p>
+            {{ form.errors }}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    <p>¿No tienes una cuenta? Regístrate <a href="{% url 'admin:index' %}">aquí</a>.</p>
 <a href="{% url 'index' %}">Volver al inicio</a>
 {% endblock %}

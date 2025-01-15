@@ -1,0 +1,66 @@
+MIXIN --> Para vistas basadas en clases.
+    from django.contrib.auth.mixins import LoginRequiredMixin
+
+    class NombreClase(LoginRequiredMixin, CreateView):
+        variable = valor
+        form = formulario
+
+    Otros tipos:
+        LoginRequiredMixin: Verifica si se está logeado. No verifica el tipo de user.
+        PermissionRequiredMixin: Verifica que el usuario tenga un permiso específico.
+        UserPassesTestMixin: Definir una condición personalizada y si la pasa, da acceso.
+
+
+
+DECORATORS --> Para vistas basadas en funciones
+    from django.contrib.auth.decorators import login_required 
+
+    @login_required
+    def funcion{
+        variable = valor
+    }
+
+    Otros tipos:
+        permision_required
+        user_passed_test
+
+
+
+USUARIOS PERSONALIZADOS: 
+
+    AbstractUser --> Atributos y funcionalidades disponibles desde el modelo (recoge los datos del modelo)
+        from django.contrib.auth.models import AbstractUser
+
+        class CustomUser(AbstractUser):
+            campos adicionales como número de teléfono, fechas, imagen... (=! name, password, mail)
+
+        def __str__():
+            return self.username (hereda)
+
+        * Hay que modificar settings: AUTH_USER_MODEL = 'cursosapp.estudiante'
+        * NO es aconsejable que vaias clases hereden de AbstractUser. Es mejor crear usuario por ejemplo en vez de estudiante y profesor
+
+    UserAdmin: 
+        class CustomUserAdmin(UserAdmin):
+            model = Estudiante
+            fieldset = UserAdmin.fieldset + (
+                (None, {'fields': ('foto', 'fecha_nacimiento')}),
+            )
+
+
+
+def get_queryset(self):
+    queryset = super().get_queryset()
+    name_search = self.request.GET.get('name_search')
+    estudiante = self.request.GET.get('name_search')
+    queryset = queryset.filter(estudiante_id=self.request.user.id)
+
+
+_______________________________________________________
+*******************************************************
+
+**Función Q para get_queryset
+**Parámetro ?next= en el navegador
+**form_valid
+**get_context_data
+**get_queryset

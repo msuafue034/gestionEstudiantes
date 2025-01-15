@@ -9,7 +9,7 @@ class Curso(models.Model):
     codigo = models.CharField(unique=True, max_length=10, verbose_name="Código")
     fecha_inicio = models.DateField(blank=False, null=False, verbose_name="Fecha de inicio")
     fecha_fin = models.DateField(blank=False, null=False, verbose_name="Fecha de fin")
-    #usuario = models.ForeignKey(usuario, ...)
+    #usuario = models.ForeignKey(usuario, contraseña, )
 
     def __str__(self):
         return self.nombre

@@ -9,7 +9,17 @@
 </head>
 <body>
     {% block titulo %}{% endblock %}
-    <!--Añadir login-logout (if user.is_authenticated -> <p>Bienvenido de nuevo, {{user.username}}</p>)-->
+    {% block login %}
+        {% if user.is_authenticated %}
+            <p>¡Bienvenido de nuevo, {{ user.username }}!</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %} 
+                <button type="submit" class="">Cerrar Sesión</button>
+            </form>
+        {% else %}
+            <p>Por favor, <a href="{% url 'login' %}">inicia sesión</a> para acceder a más funciones.</p>
+        {% endif %}
+    {% endblock %}
     {% block content %}{% endblock %}
 </body>
 </html>
