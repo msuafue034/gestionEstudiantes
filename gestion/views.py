@@ -3,6 +3,7 @@ from .models import Curso, Estudiante, Inscripcion
 from .forms import CursoForm, EstudianteForm, InscripcionForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin   # Para necesitar estar logeado para acceder 
 #from django.contrib.auth.decorators import login_required --> se añade @login_required antes de la clase para poder acceder solo quien esté logeado
 # Mixin --> Para vistas basadas en clases. No verifica el tipo de user, solo si está logeado. Por defecto pide usuario y contraseña. Existen más tipos de Mixin.
@@ -78,6 +79,10 @@ class EliminarCurso(LoginRequiredMixin, DeleteView):
     pk_url_kwarg='id'
     context_object_name = 'curso'
     
+class RegistroView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registro.html'
+    success_url = reverse_lazy('index')
 
 ############## ESTUDIANTE ##############
 
@@ -177,4 +182,6 @@ class EliminarInscripcion(DeleteView):
     template_name = 'gestion/eliminar_inscripcion.html'
     pk_url_kwarg='id'
     context_object_name = 'inscripciones'
+    
+
     

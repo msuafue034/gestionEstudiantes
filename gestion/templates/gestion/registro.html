@@ -1,0 +1,13 @@
+{% extends "gestion/base.html" %}
+
+{% block titulo %}
+<h1>Registro</h1>
+{% endblock %}
+    <h2>Crear una nueva cuenta</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% form.as_p %}
+        <button type="submit">Registrarse</button>
+    </form>
+{% block content %}
+{% endblock %}

@@ -24,4 +24,5 @@ urlpatterns = [
     path('inscripciones/crear/', CrearInscripcion.as_view(), name='crear_inscripcion'),
     #path('inscripciones/eliminar/<int:id>/', views.eliminar_inscripcion, name='eliminar_inscripcion'),
     path('inscripciones/eliminar/<int:id>/', EliminarInscripcion.as_view(), name='eliminar_inscripcion'),
+    path('accounts/registro/', RegistroView.as_view(), name="registro")
 ]
